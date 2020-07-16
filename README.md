@@ -1,1 +1,1 @@
-# drools-examples
+# drools-tutorial
