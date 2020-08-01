@@ -1,0 +1,23 @@
+package KieRule;
+import com.shiva.Order;
+
+rule "2 - HDFC only"
+
+    when
+        $o: Order(cardType =="HDFC");
+    then
+        modify($o){
+            setPrice(50000000);
+        };
+    end
+
+rule "2 - HDFC and price greater than 10000"
+
+    when
+        $o: Order(cardType =="HDFC" && price > 10000);
+    then
+
+        modify($o){
+            setDiscount(10);
+        }
+    end

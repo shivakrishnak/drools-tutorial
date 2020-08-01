@@ -1,4 +1,4 @@
-package com.shiva;
+package com.shiva.model;
 
 public class Order {
     private String name;

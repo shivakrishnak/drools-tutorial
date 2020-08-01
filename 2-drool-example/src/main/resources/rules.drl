@@ -1,0 +1,20 @@
+package myfirstproject.rules
+
+import org.shiva.Item;
+import org.shiva.Item.Category;
+
+rule "Classify Item - Low Range"
+    when
+        $i: Item(cost < 200)
+    then
+        $i.setCategory(Category.LOW_RANGE);
+end
+
+
+rule "Classify Item - Mid Range"
+    when
+        $i: Item(cost > 500)
+    then
+        $i.setCategory(Category.MID_RANGE);
+end
+

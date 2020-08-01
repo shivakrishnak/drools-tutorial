@@ -1,5 +1,6 @@
-package com.shiva;
+package com.shiva.controller;
 
+import com.shiva.model.Order;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
