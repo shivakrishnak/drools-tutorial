@@ -1,9 +1,8 @@
-package org.shiva;
+package org.drools;
 
 import java.io.Serializable;
-import java.util.Objects;
 
-public class Item implements Serializable {
+public class Product implements Serializable {
 
     public enum Category {
         NA, LOW_RANGE, MID_RANGE, HIGH_RANGE,
@@ -17,18 +16,18 @@ public class Item implements Serializable {
     private Double salePrice;
     private Category category;
 
-    public Item() {
+    public Product() {
     }
 
-    public Item(String name, Double cost) {
+    public Product(String name, Double cost) {
         this(null, name, cost, null);
     }
 
-    public Item(String name, Double cost, Double salePrice) {
+    public Product(String name, Double cost, Double salePrice) {
         this(null, name, cost, salePrice);
     }
 
-    public Item(Long id, String name, Double cost, Double salePrice) {
+    public Product(Long id, String name, Double cost, Double salePrice) {
         this.id = id;
         this.name = name;
         this.cost = cost;
@@ -74,44 +73,6 @@ public class Item implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.name);
-        hash = 59 * hash + Objects.hashCode(this.cost);
-        hash = 59 * hash + Objects.hashCode(this.salePrice);
-        hash = 59 * hash + Objects.hashCode(this.category);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Item other = (Item) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.cost, other.cost)) {
-            return false;
-        }
-        if (!Objects.equals(this.salePrice, other.salePrice)) {
-            return false;
-        }
-        if (this.category != other.category) {
-            return false;
-        }
-        return true;
     }
 
     @Override

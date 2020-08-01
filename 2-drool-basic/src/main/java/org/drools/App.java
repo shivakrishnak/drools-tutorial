@@ -1,4 +1,4 @@
-package org.shiva;
+package org.drools;
 
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
@@ -14,12 +14,12 @@ public class App
         KieContainer kContainer = ks.getKieClasspathContainer();
         KieSession kSession =  kContainer.newKieSession();
         
-        Item item = new Item("A", 523.0);
-        System.out.println( "Item Category: " + item.getCategory()); 
-        kSession.insert(item);
+        Product product = new Product("A", 523.0);
+        System.out.println( "Item Category: " + product.getCategory());
+        kSession.insert(product);
         int fired = kSession.fireAllRules();
         System.out.println( "Number of Rules executed = " + fired );
-        System.out.println( "Item Category: " + item.getCategory()); 
+        System.out.println( "Item Category: " + product.getCategory());
 
     }
 }

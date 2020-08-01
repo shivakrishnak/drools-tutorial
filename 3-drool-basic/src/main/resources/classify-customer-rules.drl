@@ -1,0 +1,15 @@
+package drools.rules;
+
+import org.drools.Order;
+import org.drools.Customer;
+
+
+rule "Classify Customer by order size"
+    when
+        $o: Order( products.size <= 3, $customer: customer ) and
+        $c: Customer(this == $customer, category == Customer.Category.NA)
+    then
+        modify($c){ 
+		    setCategory(Customer.Category.SILVER)
+	    };
+end 
