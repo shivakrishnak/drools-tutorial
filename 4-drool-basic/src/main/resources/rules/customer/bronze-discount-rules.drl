@@ -1,0 +1,13 @@
+package drools.rules;
+
+import org.drools.Order;
+import org.drools.Customer;
+
+rule "Bronze Customers - 5% Discount"
+    when
+        $o: Order( $customer: customer)
+        $c: Customer( category == Category.BRONZE, this == $customer )
+    then
+        $o.setDiscount(5);
+        update($o);
+end
