@@ -1,24 +1,26 @@
 package org.drools;
 
-import org.kie.api.KieServices;
-import org.kie.api.builder.Results;
-import org.kie.api.runtime.KieContainer;
+import org.drools.config.KieStatefulConfiguration;
+import org.drools.model.Customer;
+import org.drools.model.Order;
 import org.kie.api.runtime.KieSession;
 
 public class StatefulApp {
 
     public static void main(String[] args) {
-        KieSession kSession = getKieSession();
+        KieStatefulConfiguration kieConfig = new KieStatefulConfiguration();
+        KieSession kieSession = kieConfig.getKieSession();
 
-        discountForBronzeCustomers(kSession);
-
+        discountForBronzeCustomers(kieSession);
     }
 
     private static void discountForBronzeCustomers(KieSession kieSession) {
         Customer customer = new Customer();
         customer.setCategory(Customer.Category.BRONZE);
+        customer.setName("Shiva");
 
         Order order = new Order();
+        order.setOrderId(234L);
         order.setCustomer(customer);
 
         kieSession.insert(customer);
@@ -28,28 +30,8 @@ public class StatefulApp {
 
         System.out.println("Number of Rules executed = " + fired);
         System.out.println("Discount : " + order.getDiscount());
-    }
+        System.out.println("customer : " + customer);
 
-    private static KieSession getKieSession() {
-        System.out.println("### Running loadingRulesFromClassPath() Test ###");
-        KieServices ks = KieServices.Factory.get();
-        KieContainer kContainer = ks.newKieClasspathContainer();
-
-        Results results = kContainer.verify();
-        results.getMessages().stream().forEach((message) -> {
-            System.out.println(">> Message ( " + message.getLevel() + " ): " + message.getText());
-        });
-        kContainer.getKieBaseNames().stream().map((kieBase) -> {
-            System.out.println(">> Loading KieBase: " + kieBase);
-            return kieBase;
-        }).forEach((kieBase) -> {
-            kContainer.getKieSessionNamesInKieBase(kieBase).stream().forEach((kieSession) -> {
-                System.out.println("\t >> Containingx` KieSession: " + kieSession);
-            });
-        });
-
-        KieSession kieSession = kContainer.newKieSession("rules.customer.discount");
-        return kieSession;
     }
 
 }

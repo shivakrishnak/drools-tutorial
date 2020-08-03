@@ -1,10 +1,11 @@
 package org.drools;
 
+import org.drools.config.KieStatelessConfiguration;
+import org.drools.model.Customer;
+import org.drools.model.Order;
 import org.kie.api.KieServices;
-import org.kie.api.builder.Results;
 import org.kie.api.command.Command;
 import org.kie.api.runtime.ExecutionResults;
-import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.StatelessKieSession;
 
 import java.util.ArrayList;
@@ -13,8 +14,10 @@ import java.util.List;
 public class StatelessApp {
 
     public static void main(String[] args) {
-        KieServices ks = KieServices.Factory.get();
-        StatelessKieSession statelessKieSession = getKieSession(ks);
+        KieStatelessConfiguration kieConfig = new KieStatelessConfiguration();
+
+        KieServices ks = kieConfig.getKieServices();
+        StatelessKieSession statelessKieSession = kieConfig.getKieSession();
 
         discoutforSilverCustomer(ks, statelessKieSession);
 
@@ -23,8 +26,10 @@ public class StatelessApp {
     private static void discoutforSilverCustomer(KieServices ks, StatelessKieSession statelessKieSession) {
         Customer customer = new Customer();
         customer.setCategory(Customer.Category.SILVER);
+        customer.setName("Shiva");
 
         Order order = new Order();
+        order.setOrderId(26L);
         order.setCustomer(customer);
 
         System.out.println("Item Category: " + order.getCustomer().getCategory());
@@ -43,29 +48,8 @@ public class StatelessApp {
 
         System.out.println("Number of Rules executed = " + fired);
         System.out.println("Discount : " + order.getDiscount());
+        System.out.println("customer : " + customer);
     }
 
-    private static StatelessKieSession getKieSession(KieServices ks) {
-        System.out.println("### Running statelessSessionTest() Test ###");
-
-        KieContainer kContainer = ks.newKieClasspathContainer();
-
-        Results results = kContainer.verify();
-        results.getMessages().stream().forEach((message) -> {
-            System.out.println(">> Message ( " + message.getLevel() + " ): " + message.getText());
-        });
-        kContainer.getKieBaseNames().stream().map((kieBase) -> {
-            System.out.println(">> Loading KieBase: " + kieBase);
-            return kieBase;
-        }).forEach((kieBase) -> {
-            kContainer.getKieSessionNamesInKieBase(kieBase).stream().forEach((kieSession) -> {
-                System.out.println("\t >> Containing KieSession: " + kieSession);
-            });
-        });
-
-        StatelessKieSession statelessKieSession = kContainer.newStatelessKieSession("rules.customer.sl.discount");
-
-        return statelessKieSession;
-    }
 
 }

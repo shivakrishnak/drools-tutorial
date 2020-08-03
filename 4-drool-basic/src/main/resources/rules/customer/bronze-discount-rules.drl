@@ -1,7 +1,7 @@
 package drools.rules;
 
-import org.drools.Order;
-import org.drools.Customer;
+import org.drools.model.Order;
+import org.drools.model.Customer;
 
 rule "Bronze Customers - 5% Discount"
     when

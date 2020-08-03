@@ -1,0 +1,15 @@
+package chapter02.rules;
+
+import org.drools.model.Order;
+import org.drools.model.Customer;
+import org.drools.model.Coupon;
+
+
+rule "Create Coupons for Gold Customers"
+    when
+        $o: Order( $customer: customer )
+        $c: Customer(this == $customer, category == Category.GOLD )
+    then
+        insert(new Coupon($c, $o, Coupon.CouponType.POINTS));
+end 
+

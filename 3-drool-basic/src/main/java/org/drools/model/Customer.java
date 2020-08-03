@@ -1,4 +1,6 @@
-package org.drools;
+package org.drools.model;
+
+import java.util.List;
 
 public class Customer {
 

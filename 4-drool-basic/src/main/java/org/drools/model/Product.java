@@ -1,4 +1,4 @@
-package org.drools;
+package org.drools.model;
 
 import java.io.Serializable;
 

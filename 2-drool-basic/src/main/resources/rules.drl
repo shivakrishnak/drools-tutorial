@@ -1,7 +1,7 @@
 package drools.rules
 
-import org.drools.Product;
-import org.drools.Product.Category;
+import org.drools.model.Product;
+import org.drools.model.Product.Category;
 
 rule "Classify Product - Low Range"
     when
