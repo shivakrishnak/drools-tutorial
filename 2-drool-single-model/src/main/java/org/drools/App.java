@@ -16,7 +16,7 @@ public class App
         kSession.insert(product);
         int fired = kSession.fireAllRules();
         System.out.println( "Number of Rules executed = " + fired );
-        System.out.println( "Item Category: " + product.getCategory());
+        System.out.println( "Product Category: " + product.getCategory());
 
     }
 

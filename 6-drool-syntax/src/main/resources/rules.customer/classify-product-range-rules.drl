@@ -1,0 +1,39 @@
+package drools.rules
+
+import org.drools.model.Product;
+import org.drools.model.Product.Category;
+
+rule "Classify Product - Low Range"
+    when
+        $p: Product( cost <= 200, category == Category.NA )
+    then
+        $p.setCategory(Product.Category.LOW_RANGE);
+        update($p);
+end
+
+rule "Classify Product - Mid Range"
+    when
+        $p: Product( cost > 200 && cost < 500, category == Category.NA )
+    then
+        $p.setCategory(Product.Category.MID_RANGE);
+        update($p);
+end
+
+rule "Classify Product - Mid Range - new"
+    enabled false
+    salience 10
+    when
+        $p: Product( cost > 300 && cost < 500, category == Category.NA )
+    then
+        $p.setCategory(Product.Category.SPECIAL_MIDHIGH_RANGE);
+        update($p);
+end
+
+rule "Classify Product - High Range"
+    when
+        $p: Product( cost >= 500, category == Category.NA )
+    then
+        $p.setCategory(Product.Category.HIGH_RANGE);
+        update($p);
+end
+

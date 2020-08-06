@@ -5,16 +5,16 @@ import org.drools.model.Product.Category;
 
 rule "Classify Product - Low Range"
     when
-        $i: Product(cost < 200)
+        $p: Product(cost < 200)
     then
-        $i.setCategory(Category.LOW_RANGE);
+        $p.setCategory(Category.LOW_RANGE);
 end
 
 
 rule "Classify Product - Mid Range"
     when
-        $i: Product(cost > 500)
+        $p: Product(cost > 500)
     then
-        $i.setCategory(Category.MID_RANGE);
+        $p.setCategory(Category.MID_RANGE);
 end
 
