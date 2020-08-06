@@ -1,5 +1,7 @@
 package org.drools.model;
 
+import org.drools.model.Customer;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,7 +84,7 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "org.drools.model.Order{" +
                 "orderId=" + orderId +
                 ", date=" + date +
                 ", customer=" + customer +

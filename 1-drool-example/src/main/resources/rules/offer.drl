@@ -1,10 +1,10 @@
 package KieRule;
-import com.shiva.Order;
+import com.shiva.org.drools.model.Order;
 
 rule "HSBC"
 
 when
-    orderObject : Order(cardType =="HDFC" && price > 10000);
+    orderObject : org.drools.model.Order(cardType =="HDFC" && price > 10000);
 then
     orderObject.setDiscount(10);
 end;
@@ -12,7 +12,7 @@ end;
 rule "ICICI"
 
 when
-    orderObject : Order(cardType =="ICICI" && price > 15000);
+    orderObject : org.drools.model.Order(cardType =="ICICI" && price > 15000);
 then
     orderObject.setDiscount(8);
 end;

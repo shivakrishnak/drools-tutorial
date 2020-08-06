@@ -62,6 +62,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer [id = " + customerId + ", age=" + age + ", email=" + email + ", name=" + name + ", category = " + category + "]";
+        return "org.drools.model.Customer [id = " + customerId + ", age=" + age + ", email=" + email + ", name=" + name + ", category = " + category + "]";
     }
 }
