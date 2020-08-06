@@ -8,12 +8,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Bootstrapping the Rule Engine ..." );
-        // Bootstrapping a Rule Engine Session
-        KieServices ks = KieServices.Factory.get();
-        KieContainer kContainer = ks.getKieClasspathContainer();
-        KieSession kSession =  kContainer.newKieSession();
-        
+        KieSession kSession = getKieSession();
+
         Product product = new Product("A", 523.0);
         System.out.println( "Item Category: " + product.getCategory());
         kSession.insert(product);
@@ -21,5 +17,14 @@ public class App
         System.out.println( "Number of Rules executed = " + fired );
         System.out.println( "Item Category: " + product.getCategory());
 
+    }
+
+    private static KieSession getKieSession() {
+        System.out.println( "Bootstrapping the Rule Engine ..." );
+        // Bootstrapping a Rule Engine Session
+        KieServices ks = KieServices.Factory.get();
+        KieContainer kContainer = ks.getKieClasspathContainer();
+        KieSession kSession =  kContainer.newKieSession();
+        return kSession;
     }
 }

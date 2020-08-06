@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.shiva</groupId>
-	<artifactId>2-drool-basic</artifactId>
+	<artifactId>4-drool-kie-states</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>2-drool-basic</name>
+	<name>4-drool-kie-states</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

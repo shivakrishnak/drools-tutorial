@@ -51,5 +51,6 @@ public class StatelessApp {
         System.out.println("customer : " + customer);
     }
 
+    //Stateless = statefull + dispose();
 
 }
