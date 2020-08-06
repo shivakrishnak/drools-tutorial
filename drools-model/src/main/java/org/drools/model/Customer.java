@@ -3,7 +3,7 @@ package org.drools.model;
 public class Customer {
 
     public enum Category {
-        NA, GOLD, SILVER, BRONZE
+        NA, GOLD, SILVER, BRONZE,PREMIUM
     };
     private static final long serialVersionUID = 1L;
 
